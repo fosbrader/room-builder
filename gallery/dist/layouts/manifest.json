@@ -1,0 +1,29 @@
+{
+  "generatedAt": "2025-12-27T20:32:58.532Z",
+  "layouts": [
+    {
+      "slug": "edit-bay",
+      "name": "Edit Bay Layout",
+      "entityCount": 14,
+      "updatedAt": "2024-01-01T00:00:00.000Z"
+    },
+    {
+      "slug": "sample-office",
+      "name": "Sample Office Layout",
+      "entityCount": 17,
+      "updatedAt": "2024-01-01T00:00:00.000Z"
+    },
+    {
+      "slug": "server-room",
+      "name": "Server Room Layout",
+      "entityCount": 16,
+      "updatedAt": "2024-01-01T00:00:00.000Z"
+    },
+    {
+      "slug": "test",
+      "name": "test",
+      "entityCount": 0,
+      "updatedAt": "2025-12-27T20:01:39.884Z"
+    }
+  ]
+}
