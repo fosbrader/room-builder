@@ -1,0 +1,88 @@
+.toolbar {
+  width: 80px;
+  background: var(--bg-secondary);
+  border-right: 1px solid var(--border);
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  overflow-y: auto;
+}
+
+.toolbar-section {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.toolbar-title {
+  font-size: 10px;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  padding: 4px 0;
+  letter-spacing: 0.5px;
+}
+
+.tool-button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 4px;
+  border-radius: 4px;
+  background: transparent;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.tool-button:hover {
+  background: var(--bg-tertiary);
+}
+
+.tool-button.active {
+  background: var(--accent);
+  border-color: var(--accent);
+}
+
+.tool-button.small {
+  padding: 4px;
+  font-size: 10px;
+}
+
+.tool-icon {
+  font-size: 18px;
+  margin-bottom: 2px;
+}
+
+.tool-label {
+  font-size: 10px;
+  color: var(--text-secondary);
+}
+
+.tool-button.active .tool-label {
+  color: var(--text-primary);
+}
+
+.toolbar-help {
+  margin-top: auto;
+  padding-top: 16px;
+  border-top: 1px solid var(--border);
+}
+
+.help-item {
+  font-size: 9px;
+  color: var(--text-secondary);
+  margin-bottom: 4px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.help-item kbd {
+  background: var(--bg-tertiary);
+  padding: 2px 4px;
+  border-radius: 2px;
+  font-family: inherit;
+  font-size: 9px;
+}

@@ -1,0 +1,26 @@
+{
+  "name": "floorplan-builder-server",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "tsx watch src/index.ts",
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "build:gallery": "tsx src/scripts/buildGallery.ts"
+  },
+  "dependencies": {
+    "express": "^4.21.2",
+    "cors": "^2.8.5",
+    "sharp": "^0.33.5",
+    "pdfkit": "^0.15.1",
+    "nanoid": "^5.0.9"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.0",
+    "@types/cors": "^2.8.17",
+    "@types/node": "^22.10.2",
+    "@types/pdfkit": "^0.13.8",
+    "typescript": "^5.7.2",
+    "tsx": "^4.19.2"
+  }
+}

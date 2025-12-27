@@ -1,0 +1,15 @@
+{
+  "name": "floorplan-builder",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Local-only Docker-based floorplan builder for office/tech spaces",
+  "scripts": {
+    "docker:up": "docker compose up",
+    "docker:build": "docker compose build",
+    "docker:down": "docker compose down",
+    "build:gallery": "docker compose exec server npm run build:gallery"
+  },
+  "keywords": ["floorplan", "office", "design", "layout"],
+  "author": "",
+  "license": "MIT"
+}

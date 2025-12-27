@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "presets": {
+    "desks": [
+      { "name": "Small Desk (48x24)", "objectType": "desk", "width": 48, "height": 24 },
+      { "name": "Medium Desk (60x30)", "objectType": "desk", "width": 60, "height": 30 },
+      { "name": "Large Desk (72x30)", "objectType": "desk", "width": 72, "height": 30 },
+      { "name": "Corner Desk (60x60)", "objectType": "desk", "width": 60, "height": 60 },
+      { "name": "Standing Desk (48x30)", "objectType": "desk", "width": 48, "height": 30 }
+    ],
+    "chairs": [
+      { "name": "Office Chair", "objectType": "chair", "width": 24, "height": 24 },
+      { "name": "Task Chair", "objectType": "chair", "width": 20, "height": 20 },
+      { "name": "Executive Chair", "objectType": "chair", "width": 28, "height": 28 },
+      { "name": "Guest Chair", "objectType": "chair", "width": 22, "height": 22 }
+    ],
+    "shelves": [
+      { "name": "Small Shelf (36x18)", "objectType": "shelf", "width": 36, "height": 18 },
+      { "name": "Medium Shelf (48x18)", "objectType": "shelf", "width": 48, "height": 18 },
+      { "name": "Large Shelf (72x24)", "objectType": "shelf", "width": 72, "height": 24 },
+      { "name": "Bookcase (36x12)", "objectType": "shelf", "width": 36, "height": 12 }
+    ],
+    "racks": [
+      { "name": "Server Rack 42U (24x42)", "objectType": "rack", "width": 24, "height": 42, "depth": 84 },
+      { "name": "Server Rack 48U (24x48)", "objectType": "rack", "width": 24, "height": 48, "depth": 96 },
+      { "name": "Network Rack (24x36)", "objectType": "rack", "width": 24, "height": 36, "depth": 72 },
+      { "name": "Half Rack (24x22)", "objectType": "rack", "width": 24, "height": 22, "depth": 44 },
+      { "name": "Open Rack (24x45)", "objectType": "rack", "width": 24, "height": 45, "depth": 90 }
+    ],
+    "custom": []
+  }
+}

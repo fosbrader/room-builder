@@ -1,0 +1,96 @@
+.library {
+  flex: 1;
+  min-height: 200px;
+  overflow-y: auto;
+}
+
+.library-category {
+  margin-bottom: 16px;
+}
+
+.category-title {
+  font-size: 11px;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  margin-bottom: 8px;
+  letter-spacing: 0.5px;
+}
+
+.preset-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.preset-button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px;
+  background: var(--bg-primary);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  cursor: pointer;
+  text-align: left;
+  transition: all 0.15s;
+}
+
+.preset-button:hover {
+  border-color: var(--accent);
+  background: var(--bg-tertiary);
+}
+
+.preset-button.active {
+  border-color: var(--accent);
+  background: var(--accent);
+}
+
+.preset-icon {
+  font-size: 16px;
+  width: 24px;
+  text-align: center;
+}
+
+.preset-name {
+  flex: 1;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.preset-size {
+  font-size: 10px;
+  color: var(--text-secondary);
+}
+
+.preset-button.active .preset-size {
+  color: var(--text-primary);
+}
+
+.placing-indicator {
+  background: var(--accent);
+  color: white;
+  padding: 8px;
+  border-radius: 4px;
+  margin-bottom: 12px;
+  font-size: 12px;
+  text-align: center;
+}
+
+.library-footer {
+  margin-top: 16px;
+  padding-top: 12px;
+  border-top: 1px solid var(--border);
+}
+
+.hint {
+  font-size: 11px;
+  color: var(--text-secondary);
+  text-align: center;
+}
+
+.empty-text {
+  font-size: 12px;
+  color: var(--text-secondary);
+  text-align: center;
+  padding: 24px 0;
+}

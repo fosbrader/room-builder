@@ -1,0 +1,36 @@
+version: '3.8'
+
+services:
+  client:
+    build:
+      context: ./client
+      dockerfile: Dockerfile
+    ports:
+      - "5173:5173"
+    volumes:
+      - ./client/src:/app/src
+      - ./client/public:/app/public
+      - ./client/index.html:/app/index.html
+      - ./client/vite.config.ts:/app/vite.config.ts
+    environment:
+      - VITE_API_URL=http://localhost:3001
+    depends_on:
+      - server
+
+  server:
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+    ports:
+      - "3001:3001"
+    volumes:
+      - ./server/src:/app/src
+      - ./layouts:/app/layouts
+      - ./exports:/app/exports
+      - ./docs:/app/docs
+    environment:
+      - NODE_ENV=development
+      - PORT=3001
+      - LAYOUTS_DIR=/app/layouts
+      - EXPORTS_DIR=/app/exports
+      - DOCS_DIR=/app/docs
