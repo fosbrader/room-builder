@@ -1,4 +1,43 @@
 {
-  "generatedAt": "2024-01-01T00:00:00.000Z",
-  "layouts": []
+  "generatedAt": "2025-12-27T20:18:33.401Z",
+  "layouts": [
+    {
+      "id": "9b1dc630-1fb1-455d-bc7a-4b106613884e",
+      "name": "test",
+      "slug": "test",
+      "updatedAt": "2025-12-27T20:01:39.884Z",
+      "entityCount": 0,
+      "preview": "previews/test.png",
+      "exports": []
+    },
+    {
+      "id": "edit-bay-001",
+      "name": "Edit Bay Layout",
+      "slug": "edit-bay",
+      "updatedAt": "2024-01-01T00:00:00.000Z",
+      "entityCount": 14,
+      "preview": "previews/edit-bay.png",
+      "exports": [
+        "edit-bay.png"
+      ]
+    },
+    {
+      "id": "sample-office-001",
+      "name": "Sample Office Layout",
+      "slug": "sample-office",
+      "updatedAt": "2024-01-01T00:00:00.000Z",
+      "entityCount": 17,
+      "preview": "previews/sample-office.png",
+      "exports": []
+    },
+    {
+      "id": "server-room-001",
+      "name": "Server Room Layout",
+      "slug": "server-room",
+      "updatedAt": "2024-01-01T00:00:00.000Z",
+      "entityCount": 16,
+      "preview": "previews/server-room.png",
+      "exports": []
+    }
+  ]
 }

@@ -35,7 +35,7 @@
       </article>
     `).join('');
   } catch (error) {
-    gallery.innerHTML = '<p class="empty-state">No gallery data yet. Run "npm run build:gallery" to generate previews.</p>';
-    console.log('Gallery not yet built:', error);
+    gallery.innerHTML = '<p class="empty-state">Failed to load gallery. Make sure index.json exists.</p>';
+    console.error('Gallery load error:', error);
   }
 })();

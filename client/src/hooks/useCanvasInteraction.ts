@@ -39,11 +39,16 @@ export function useCanvasInteraction(stageRef: RefObject<Konva.Stage>) {
   }, [layout, stagePosition, stageScale]);
   
   const handleMouseDown = useCallback((e: Konva.KonvaEventObject<MouseEvent>) => {
-    // Only handle clicks on the stage background
-    if (e.target !== e.target.getStage()) return;
-    
     const stage = stageRef.current;
     if (!stage) return;
+    
+    // Check if we clicked on an entity (Group containing shapes)
+    const target = e.target;
+    const parent = target.getParent();
+    const isEntityClick = parent && parent.getClassName() === 'Group' && parent.attrs.draggable !== undefined;
+    
+    // Skip if clicked on an entity - let the entity handle it
+    if (isEntityClick) return;
     
     const pointer = stage.getPointerPosition();
     if (!pointer) return;
@@ -95,11 +100,16 @@ export function useCanvasInteraction(stageRef: RefObject<Konva.Stage>) {
   }, []);
   
   const handleClick = useCallback((e: Konva.KonvaEventObject<MouseEvent>) => {
-    // Only handle clicks on the stage background
-    if (e.target !== e.target.getStage()) return;
-    
     const stage = stageRef.current;
     if (!stage || !layout) return;
+    
+    // Check if we clicked on an existing entity (Group containing shapes)
+    const target = e.target;
+    const parent = target.getParent();
+    const isEntityClick = parent && parent.getClassName() === 'Group' && parent.attrs.draggable !== undefined;
+    
+    // Skip if clicked on an entity - let the entity handle it
+    if (isEntityClick) return;
     
     const pointer = stage.getPointerPosition();
     if (!pointer) return;

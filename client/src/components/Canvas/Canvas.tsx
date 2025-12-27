@@ -116,8 +116,9 @@ export function Canvas() {
         onMouseUp={handleMouseUp}
         onClick={handleClick}
       >
-        {/* Background */}
+        {/* Background layer */}
         <Layer>
+          {/* Page background - captures clicks for placement */}
           <Rect
             x={0}
             y={0}
@@ -129,6 +130,8 @@ export function Canvas() {
             shadowOpacity={0.1}
             shadowOffsetX={2}
             shadowOffsetY={2}
+            onClick={handleClick}
+            onMouseDown={handleMouseDown}
           />
         </Layer>
         

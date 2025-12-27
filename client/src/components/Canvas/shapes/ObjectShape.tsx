@@ -37,8 +37,16 @@ export function ObjectShape({ entity, scale }: ObjectShapeProps) {
     }
   };
   
+  const handleMouseDown = (e: any) => {
+    e.cancelBubble = true;
+  };
+  
   const handleDragStart = (e: any) => {
-    e.cancelBubble = true; // Prevent stage from dragging
+    e.cancelBubble = true;
+    // Select the entity when starting to drag
+    if (!selectedIds.includes(entity.id)) {
+      selectEntity(entity.id, false);
+    }
   };
   
   const handleDragEnd = (e: any) => {
@@ -95,6 +103,7 @@ export function ObjectShape({ entity, scale }: ObjectShapeProps) {
       rotation={entity.rotation || 0}
       draggable={toolMode === 'select'}
       onClick={handleClick}
+      onMouseDown={handleMouseDown}
       onDragStart={handleDragStart}
       onDragEnd={handleDragEnd}
       onTransformEnd={handleTransformEnd}
