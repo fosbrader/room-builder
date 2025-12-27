@@ -12,6 +12,11 @@ export function Header() {
   const [saveAsName, setSaveAsName] = useState('');
   const [isExporting, setIsExporting] = useState(false);
   
+  // Export options state
+  const [exportIncludeGrid, setExportIncludeGrid] = useState(true);
+  const [exportIncludeDimensions, setExportIncludeDimensions] = useState(true);
+  const [exportIncludeLabels, setExportIncludeLabels] = useState(true);
+  
   const layout = useLayoutStore((state) => state.layout);
   const layouts = useLayoutStore((state) => state.layouts);
   const isDirty = useLayoutStore((state) => state.isDirty);
@@ -55,8 +60,9 @@ export function Header() {
     try {
       await api.exportLayout(layout.slug, {
         formats: formats as any,
-        includeGrid: true,
-        includeDimensions: true,
+        includeGrid: exportIncludeGrid,
+        includeDimensions: exportIncludeDimensions,
+        includeLabels: exportIncludeLabels,
         paperSize: layout.settings.pageSize,
         orientation: 'landscape',
         scaleLabel: '1/4" = 1\'',
@@ -178,7 +184,35 @@ export function Header() {
         <div className="modal-overlay" onClick={() => setShowExportModal(false)}>
           <div className="modal" onClick={e => e.stopPropagation()}>
             <h2>Export Layout</h2>
-            <p>Select export formats:</p>
+            
+            <div className="export-checkboxes">
+              <label className="checkbox-label">
+                <input 
+                  type="checkbox" 
+                  checked={exportIncludeGrid} 
+                  onChange={(e) => setExportIncludeGrid(e.target.checked)} 
+                />
+                Include Grid
+              </label>
+              <label className="checkbox-label">
+                <input 
+                  type="checkbox" 
+                  checked={exportIncludeDimensions} 
+                  onChange={(e) => setExportIncludeDimensions(e.target.checked)} 
+                />
+                Include Dimensions
+              </label>
+              <label className="checkbox-label">
+                <input 
+                  type="checkbox" 
+                  checked={exportIncludeLabels} 
+                  onChange={(e) => setExportIncludeLabels(e.target.checked)} 
+                />
+                Include Labels
+              </label>
+            </div>
+            
+            <p>Select export format:</p>
             <div className="export-options">
               <button 
                 onClick={() => handleExport(['png'])} 

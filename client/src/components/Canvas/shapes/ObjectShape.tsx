@@ -37,7 +37,12 @@ export function ObjectShape({ entity, scale }: ObjectShapeProps) {
     }
   };
   
+  const handleDragStart = (e: any) => {
+    e.cancelBubble = true; // Prevent stage from dragging
+  };
+  
   const handleDragEnd = (e: any) => {
+    e.cancelBubble = true;
     updateEntity(entity.id, {
       x: e.target.x() / scale,
       y: e.target.y() / scale,
@@ -90,6 +95,7 @@ export function ObjectShape({ entity, scale }: ObjectShapeProps) {
       rotation={entity.rotation || 0}
       draggable={toolMode === 'select'}
       onClick={handleClick}
+      onDragStart={handleDragStart}
       onDragEnd={handleDragEnd}
       onTransformEnd={handleTransformEnd}
     >

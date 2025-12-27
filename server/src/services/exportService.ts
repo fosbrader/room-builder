@@ -36,8 +36,9 @@ function layoutToSvg(layout: Layout, options: ExportOptions): string {
   }
 
   // Draw entities
+  const includeLabels = options.includeLabels !== false; // Default to true
   for (const entity of entities) {
-    svg += entityToSvg(entity, scale);
+    svg += entityToSvg(entity, scale, includeLabels);
   }
 
   // Draw dimensions if requested
@@ -49,7 +50,7 @@ function layoutToSvg(layout: Layout, options: ExportOptions): string {
   return svg;
 }
 
-function entityToSvg(entity: Entity, scale: number): string {
+function entityToSvg(entity: Entity, scale: number, includeLabels: boolean = true): string {
   const style = entity.style || {};
   const fill = style.fill || '#ffffff';
   const stroke = style.stroke || '#333333';
@@ -59,13 +60,13 @@ function entityToSvg(entity: Entity, scale: number): string {
     case 'wall':
       return wallToSvg(entity as Wall, scale, stroke, strokeWidth);
     case 'object':
-      return objectToSvg(entity as FloorObject, scale, fill, stroke, strokeWidth);
+      return objectToSvg(entity as FloorObject, scale, fill, stroke, strokeWidth, includeLabels);
     case 'door':
       return doorToSvg(entity as Door, scale, stroke, strokeWidth);
     case 'window':
       return windowToSvg(entity as Window, scale, stroke, strokeWidth);
     case 'text':
-      return textToSvg(entity as TextLabel, scale);
+      return includeLabels ? textToSvg(entity as TextLabel, scale) : '';
     default:
       return '';
   }
@@ -81,14 +82,16 @@ function wallToSvg(wall: Wall, scale: number, stroke: string, strokeWidth: numbe
   <polyline points="${points}" fill="none" stroke="${stroke}" stroke-width="${thickness}" stroke-linecap="square" stroke-linejoin="miter"/>`;
 }
 
-function objectToSvg(obj: FloorObject, scale: number, fill: string, stroke: string, strokeWidth: number): string {
+function objectToSvg(obj: FloorObject, scale: number, fill: string, stroke: string, strokeWidth: number, includeLabels: boolean = true): string {
   const x = obj.x * scale;
   const y = obj.y * scale;
   const w = obj.width * scale;
   const h = obj.height * scale;
   const rotation = obj.rotation || 0;
   
-  const transform = rotation ? ` transform="rotate(${rotation} ${x + w/2} ${y + h/2})"` : '';
+  const cx = x + w / 2;
+  const cy = y + h / 2;
+  const transform = rotation ? ` transform="rotate(${rotation} ${cx} ${cy})"` : '';
   
   // Different fills for different object types
   let objFill = fill;
@@ -102,10 +105,10 @@ function objectToSvg(obj: FloorObject, scale: number, fill: string, stroke: stri
   let svg = `
   <rect x="${x}" y="${y}" width="${w}" height="${h}" fill="${objFill}" stroke="${stroke}" stroke-width="${strokeWidth}"${transform}/>`;
   
-  // Add label if present
-  if (obj.label) {
+  // Add label if present and includeLabels is true
+  if (obj.label && includeLabels) {
     svg += `
-  <text x="${x + w/2}" y="${y + h/2}" text-anchor="middle" dominant-baseline="middle" font-size="${10 * scale / 4}" fill="#333"${transform}>${obj.label}</text>`;
+  <text x="${cx}" y="${cy}" text-anchor="middle" dominant-baseline="middle" font-size="${12 * scale / 4}" font-family="Arial, Helvetica, sans-serif" fill="#333"${transform}>${obj.label}</text>`;
   }
   
   return svg;
@@ -152,7 +155,7 @@ function textToSvg(text: TextLabel, scale: number): string {
   const transform = rotation ? ` transform="rotate(${rotation} ${x} ${y})"` : '';
   
   return `
-  <text x="${x}" y="${y}" font-size="${fontSize}" fill="#333"${transform}>${text.text}</text>`;
+  <text x="${x}" y="${y}" font-size="${fontSize}" font-family="Arial, Helvetica, sans-serif" fill="#333"${transform}>${text.text}</text>`;
 }
 
 function generateDimensionsSvg(entities: Entity[], scale: number, units: string): string {

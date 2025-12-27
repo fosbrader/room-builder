@@ -1,4 +1,4 @@
-import { useRef, useCallback, useEffect } from 'react';
+import { useRef, useCallback, useEffect, useState } from 'react';
 import { Stage, Layer, Rect } from 'react-konva';
 import Konva from 'konva';
 import { useLayoutStore } from '../../store/layoutStore';
@@ -13,6 +13,7 @@ import './Canvas.css';
 export function Canvas() {
   const stageRef = useRef<Konva.Stage>(null);
   const containerRef = useRef<HTMLDivElement>(null);
+  const [stageDimensions, setStageDimensions] = useState({ width: 800, height: 600 });
   
   const layout = useLayoutStore((state) => state.layout);
   const showGrid = useLayoutStore((state) => state.showGrid);
@@ -20,6 +21,7 @@ export function Canvas() {
   const stageScale = useLayoutStore((state) => state.stageScale);
   const setStagePosition = useLayoutStore((state) => state.setStagePosition);
   const setStageScale = useLayoutStore((state) => state.setStageScale);
+  const isPanning = useLayoutStore((state) => state.isPanning);
   
   const { handleMouseDown, handleMouseMove, handleMouseUp, handleClick } = useCanvasInteraction(stageRef);
   
@@ -65,20 +67,23 @@ export function Canvas() {
     });
   }, [setStagePosition]);
   
-  // Fit canvas to container
+  // Fit canvas to container using ResizeObserver for reliable sizing
   useEffect(() => {
-    const updateSize = () => {
-      const container = containerRef.current;
-      const stage = stageRef.current;
-      if (!container || !stage) return;
-      
-      stage.width(container.offsetWidth);
-      stage.height(container.offsetHeight);
-    };
-    
-    updateSize();
-    window.addEventListener('resize', updateSize);
-    return () => window.removeEventListener('resize', updateSize);
+    const container = containerRef.current;
+    if (!container) return;
+
+    const observer = new ResizeObserver((entries) => {
+      const entry = entries[0];
+      if (entry) {
+        const { width, height } = entry.contentRect;
+        if (width > 0 && height > 0) {
+          setStageDimensions({ width, height });
+        }
+      }
+    });
+
+    observer.observe(container);
+    return () => observer.disconnect();
   }, []);
   
   if (!layout) {
@@ -97,13 +102,13 @@ export function Canvas() {
     <div ref={containerRef} className="canvas-wrapper">
       <Stage
         ref={stageRef}
-        width={800}
-        height={600}
+        width={stageDimensions.width}
+        height={stageDimensions.height}
         x={stagePosition.x}
         y={stagePosition.y}
         scaleX={stageScale}
         scaleY={stageScale}
-        draggable
+        draggable={isPanning}
         onDragEnd={handleDragEnd}
         onWheel={handleWheel}
         onMouseDown={handleMouseDown}

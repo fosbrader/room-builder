@@ -145,6 +145,7 @@ export interface ExportOptions {
   formats: ('png' | 'svg' | 'pdf' | 'dxf')[];
   includeGrid: boolean;
   includeDimensions: boolean;
+  includeLabels: boolean;
   paperSize: PageSize;
   orientation: 'portrait' | 'landscape';
   scaleLabel: string;
