@@ -1,15 +1,14 @@
 :root {
-  --bg-dark: #0f0f14;
-  --bg-card: #1a1a24;
-  --bg-elevated: #24243a;
-  --accent-primary: #7c3aed;
-  --accent-secondary: #06b6d4;
-  --accent-gradient: linear-gradient(135deg, #7c3aed 0%, #06b6d4 100%);
-  --text-primary: #f8fafc;
-  --text-secondary: #94a3b8;
-  --text-muted: #64748b;
-  --border-subtle: rgba(255, 255, 255, 0.08);
-  --shadow-glow: 0 0 40px rgba(124, 58, 237, 0.15);
+  /* Matching Floorplan Builder monochrome palette */
+  --bg-primary: #0d0d0d;
+  --bg-secondary: #161616;
+  --bg-tertiary: #1f1f1f;
+  --bg-elevated: #262626;
+  --text-primary: #e5e5e5;
+  --text-secondary: #737373;
+  --accent: #ffffff;
+  --accent-dim: #a3a3a3;
+  --border: #2e2e2e;
 }
 
 * {
@@ -20,32 +19,34 @@
 
 body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  background: var(--bg-dark);
+  background: var(--bg-primary);
   color: var(--text-primary);
   min-height: 100vh;
   line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
 }
 
 header {
-  background: var(--bg-card);
-  border-bottom: 1px solid var(--border-subtle);
-  padding: 1.5rem 2rem;
+  background: var(--bg-secondary);
+  border-bottom: 1px solid var(--border);
+  padding: 1rem 2rem;
   text-align: center;
 }
 
 header h1 {
-  font-size: 1.5rem;
-  font-weight: 700;
-  background: var(--accent-gradient);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text-primary);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
   margin-bottom: 0.5rem;
 }
 
 .subtitle {
   color: var(--text-secondary);
-  font-size: 0.9rem;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
 main {
@@ -56,30 +57,29 @@ main {
 
 .gallery-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1rem;
 }
 
 .layout-card {
-  background: var(--bg-card);
-  border-radius: 16px;
+  background: var(--bg-secondary);
+  border-radius: 0;
   overflow: hidden;
-  border: 1px solid var(--border-subtle);
-  transition: all 0.3s ease;
+  border: 1px solid var(--border);
+  transition: all 0.1s ease;
 }
 
 .layout-card:hover {
-  transform: translateY(-4px);
-  box-shadow: var(--shadow-glow);
-  border-color: var(--accent-primary);
+  border-color: var(--accent-dim);
 }
 
 .preview-container {
   aspect-ratio: 16 / 10;
-  background: var(--bg-elevated);
+  background: var(--bg-tertiary);
   display: flex;
   align-items: center;
   justify-content: center;
+  border-bottom: 1px solid var(--border);
 }
 
 .preview-container img {
@@ -90,24 +90,27 @@ main {
 }
 
 .no-preview {
-  color: var(--text-muted);
-  font-size: 0.9rem;
+  color: var(--text-secondary);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
 .card-content {
-  padding: 1.25rem;
-  border-top: 1px solid var(--border-subtle);
+  padding: 1rem;
 }
 
 .card-content h2 {
-  font-size: 1.1rem;
-  font-weight: 600;
+  font-size: 12px;
+  font-weight: 500;
   margin-bottom: 0.5rem;
   color: var(--text-primary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
 .card-meta {
-  font-size: 0.85rem;
+  font-size: 11px;
   color: var(--text-secondary);
   margin-bottom: 1rem;
 }
@@ -122,32 +125,40 @@ main {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  padding: 0.5rem 1rem;
-  border-radius: 8px;
-  font-size: 0.85rem;
+  padding: 8px 16px;
+  border-radius: 0;
+  font-size: 12px;
   font-weight: 500;
-  background: var(--accent-gradient);
-  color: white;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  background: var(--accent);
+  color: var(--bg-primary);
   text-decoration: none;
-  transition: all 0.2s ease;
+  border: 1px solid var(--accent);
+  transition: all 0.1s ease;
 }
 
 .export-link:hover {
-  opacity: 0.9;
-  transform: scale(1.02);
+  background: var(--accent-dim);
+  border-color: var(--accent-dim);
 }
 
 .loading, .empty-state {
   text-align: center;
   padding: 4rem 2rem;
   color: var(--text-secondary);
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
 footer {
-  background: var(--bg-card);
-  border-top: 1px solid var(--border-subtle);
-  padding: 1.5rem 2rem;
+  background: var(--bg-secondary);
+  border-top: 1px solid var(--border);
+  padding: 1rem 2rem;
   text-align: center;
-  color: var(--text-muted);
-  font-size: 0.85rem;
+  color: var(--text-secondary);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
